@@ -7,6 +7,17 @@ import { MenuComponent } from './components/components/shared/menu/menu.componen
 import { ContentComponent } from './components/components/shared/content/content.component';
 import { FooterComponent } from './components/components/shared/footer/footer.component';
 import { SettingComponent } from './components/components/shared/setting/setting.component';
+import { LoginComponent } from './components/components/login/login.component';
+import Component from 'fullcalendar/Component';
+import {Routes,RouterModule} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import { DashboardComponent } from './components/components/dashboard/dashboard.component'
+const routes: Routes = [
+  {path:'', redirectTo:'/login', pathMatch: 'full'},
+  {path:'login', component :LoginComponent},
+  {path:'home', component : DashboardComponent},
+  {path:'**', redirectTo:'/login'}];
+ 
 
 @NgModule({
   declarations: [
@@ -15,10 +26,14 @@ import { SettingComponent } from './components/components/shared/setting/setting
     MenuComponent,
     ContentComponent,
     FooterComponent,
-    SettingComponent
+    SettingComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
