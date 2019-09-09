@@ -11,7 +11,11 @@ import { LoginComponent } from './components/components/login/login.component';
 import Component from 'fullcalendar/Component';
 import {Routes,RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import { DashboardComponent } from './components/components/dashboard/dashboard.component'
+import { DashboardComponent } from './components/components/dashboard/dashboard.component';
+import { ClientesComponent } from './components/components/clientes/clientes.component';
+import { ClienteService} from './components/components/clientes/cliente.service';
+import {HttpClientModule} from '@angular/common/http';
+
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
   {path:'login', component :LoginComponent},
@@ -28,14 +32,18 @@ const routes: Routes = [
     FooterComponent,
     SettingComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    ClienteService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

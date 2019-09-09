@@ -1,47 +1,73 @@
-<div class="content-wrapper">
-    <section class="content">
-<div class="login-box">
-        <div class="login-logo">
-          <a href="https://adminlte.io/themes/AdminLTE/index2.html"><b>Ard</b>Con</a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-          <p class="login-box-msg">Iniciar sesión</p>
-      
-          <form>
-            <div class="form-group has-feedback">
-              <input name="username" [(ngModel)]="Username" type="email" class="form-control" placeholder="Email">
-              <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+<body class="hold-transition login-page">
+    <div layout="row" layout-xs="column" class="home-row">
+        <a href="start">
+          <div class="card">
+            <img src="/src/app/components/components/login/204296.svg" height="70px" alt="Getting Started with Angular">
+            <div class="card-text-container">
+              <div class="text-headline">Get Started</div>
+              <p>Start building an Angular application.</p>
             </div>
-            <div class="form-group has-feedback">
-              <input name="password" [(ngModel)]="Password" type="password" class="form-control" placeholder="Password">
-              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="row">
-              <div class="col-xs-8">
-                <div class="checkbox icheck">
-                        <label class="hover">
-                                <div class="icheckbox_square-blue hover" aria-checked="false" aria-disabled="false" style="position: relative;">
-                                <input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                <!-- <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins -->
-                                </div> Remember Me 
-                     </label>
-                </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-xs-4">
-                <button type="submit" (click)="onClickSubmit()" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
-              </div>
-              <!-- /.col -->
-            </div>
-          </form>
-          <!-- /.social-auth-links -->
-      
-          <a href="https://adminlte.io/themes/AdminLTE/pages/examples/login.html#">Olvidé mi contraseña</a><br>
-          <a href="https://adminlte.io/themes/AdminLTE/pages/examples/register.html" class="text-center">Registrar</a>
-      
-        </div>
-        <!-- /.login-box-body -->
+          </div>
+        </a>
       </div>
-    </section>
+  <div class="login-box">
+    <div class="login-logo">
+      <a><b>ARDCON</b></a>
     </div>
+
+ 
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Inicia sesión</p>
+  
+      <form action="../../index2.html" method="post">
+        <div class="form-group has-feedback">
+          <input [(ngModel)]="usuario.username" name="user" type="text" class="form-control" placeholder="Nombre de Usuario" autofocus required>
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input [(ngModel)]="usuario.password" name="pass" type="password" class="form-control" placeholder="Contraseña" required>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="checkbox icheck">
+              <label>
+                <input type="checkbox"> Recuerdame
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <button (click)='login()' type="submit" class="btn btn-primary btn-block btn-flat">Comenzar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <!-- /.social-auth-links -->
+  
+      <a href="#">Olvidé mi contraseña</a><br>
+      <a href="register.html" class="text-center">Registrar</a>
+  
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  <!-- /.login-box -->
+  
+  <!-- jQuery 3 -->
+  <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- iCheck -->
+  <script src="../../plugins/iCheck/icheck.min.js"></script>
+  <script>
+    $(function () {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+      });
+    });
+  </script>
+  </body>
