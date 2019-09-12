@@ -14,13 +14,18 @@ import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from './components/components/dashboard/dashboard.component';
 import { ClientesComponent } from './components/components/clientes/clientes.component';
 import { ClienteService} from './components/components/clientes/cliente.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AuthGuard } from './components/components/usuarios/guards/auth.guard';
+import {TokenInterceptor} from './components/components/usuarios/interceptors/token.interceptor';
+import {AuthInterceptor} from './components/components/usuarios/interceptors/auth.interceptor';
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
   {path:'login', component :LoginComponent},
-  {path:'home', component : DashboardComponent},
-  {path:'**', redirectTo:'/login'}];
+  {path:'home', component : DashboardComponent, canActivate:[AuthGuard]}
+ // ,{path:'**', redirectTo:'/login'}
+];
  
 
 @NgModule({
@@ -40,9 +45,12 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
-    ClienteService
+    ClienteService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

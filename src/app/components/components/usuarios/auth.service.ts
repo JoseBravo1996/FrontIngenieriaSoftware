@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from './usuario';
-import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +71,19 @@ export class AuthService {
       return JSON.parse(atob(accessToken.split(".")[1]));
     }
     return null;
+  }
+
+  isAuthenticated(): boolean{
+    let payload = this.obtenerDatosToken(this.token);
+    if(payload != null && payload.username && payload.username.length>0){
+      return true;
+    }
+    return false;
+  }
+
+  logout(){
+    this._token = null;
+    this._usuario = null;
+    sessionStorage.clear();
   }
 }
